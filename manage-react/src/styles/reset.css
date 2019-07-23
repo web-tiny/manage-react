@@ -1,0 +1,58 @@
+/*
+ * @Author: Tiny 
+ * @Date: 2019-07-23 17:30:20 
+ * @Last Modified by: tiny.jiao@aliyun.com
+ * @Last Modified time: 2019-07-23 17:30:40
+ */
+body {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+}
+/* 格式化样式 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,spantd,span {
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+fieldset,img {
+  border: 0
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+  font-style: normal;
+  font-weight: normal
+}
+ol,ul {
+  list-style: none
+}
+caption,th {
+  text-align: left
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size: 100%;
+  font-weight: normal
+}
+q:before,q:after {
+  content: ''
+}
+abbr,acronym {
+  border: 0
+}
+input,button {
+  border: none;
+}
+span,i {
+  vertical-align: middle;
+}
+/* a标签 */
+body a {
+  color: inherit
+}
