@@ -1,17 +1,43 @@
 /*
  * @Author: Tiny 
- * @Date: 2019-07-24 11:24:38 
+ * @Date: 2019-07-23 15:07:52 
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-07-24 16:19:54
+ * @Last Modified time: 2019-07-24 23:33:53
  */
-import { routerReducer as routing } from 'react-router-redux';
-import { combineReducers } from 'redux';
-import * as counter from './counter';
 
-const rootReducer = combineReducers({
-  routing,
-  config: (state = {}) => state,
-  ...counter
-})
+// import { handleActions, combineActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
+// handleAction(type, reducerMap, defaultState)
+import { increment, decrement } from '../actions/index';
 
-export default rootReducer;
+// 初始化state
+const initState = {
+  count: 0
+}
+
+// reducer
+// const reducers = handleActions({
+//   [combineActions(increment, decrement)]: (state, { payload: { amount } }) => {
+//     return {
+//       ...state,
+//       count: state.count + amount
+//     }
+//   }
+// }, initState)
+
+const reducers = handleActions(
+  {
+    [increment]: state => ({
+      ...state,
+      count: state.count + 1
+    }),
+    
+    [decrement]: state => ({
+      ...state,
+      count: state.count - 1
+    })
+  },
+  initState
+);
+
+export { reducers as default }
