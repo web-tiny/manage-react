@@ -2,10 +2,11 @@
  * @Author: Tiny 
  * @Date: 2019-07-23 15:07:52 
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-07-23 15:14:58
+ * @Last Modified time: 2019-07-24 17:22:35
  */
 
-import { INCREMENT, DECREMENT, RESET } from '../actions/counter';
+import { handleActions } from 'redux-actions';
+// handleAction(type, reducerMap, defaultState)
 
 // 初始化state
 const initState = {
@@ -13,21 +14,23 @@ const initState = {
 }
 
 // reducer
-export default function reducer (state = initState, action) {
-  switch (action.type) {
-    case INCREMENT:
-      return {
-        count: state.count + 1
-      };
-    case DECREMENT:
-      return {
-        count: state.count - 1
-      }
-    case RESET:
-      return {
-        count: 0
-      }
-    default:
-      return state
+const handleCounter = handleActions({
+  INCREMENT (state, action) {
+    console.log('add')
+    return {
+      count: state.count + 1
+    }
+  },
+  DECREMENT (state, action) {
+    return {
+      count: state.count - 1
+    }
+  },
+  RESET (state, action) {
+    return {
+      count: 0
+    }
   }
-}
+}, initState)
+
+export { handleCounter as default }

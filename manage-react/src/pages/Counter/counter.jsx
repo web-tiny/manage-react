@@ -1,37 +1,46 @@
 import React, { Component } from 'react';
-import { increment, decrement, reset } from './redux/actions/counter';
-import { connect } from 'react-redux';
+import { increment, decrement, reset } from '../../redux/actions/index';
+// import { connect } from 'react-redux';
+import store from '../../redux/store';
+import '../../styles/counter.scss'
+export default class Counter extends Component {
+  constructor (props, context) {
+    super(props);
+    this.handleIncrement = this.handleIncrement.bind(this);
+    this.handleDecrement = this.handleDecrement.bind(this);
+    this.handReset = this.handReset.bind(this);
+    this.state = {
+      count: 0
+    };
+  }
+  componentDidMount () {
+    this.setState({ count: store.getState().default.default.count })
+  }
 
-class Counter extends Component {
+  handleIncrement () {
+    console.log(store.getState().default.default.count)
+    store.dispatch(increment)
+  }
+
+  handleDecrement () {
+    store.dispatch(decrement)
+  }
+
+  handReset () {
+    store.dispatch(reset)
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <div>当前计数：{ this.props.counter.count }</div>
-          <button onClick = { ()=> this.props.increment() }>+</button>
-          <button onClick = { ()=> this.props.decrement() }>-</button>
-          <button onClick = { () => this.props.reset() }>reset</button>
+      <div className="counter">
+        <header className="counter-header">
+          <button onClick = { ()=> this.handleIncrement() }>+</button>
+          <button onClick = { ()=> this.handleDecrement() }>-</button>
+          <button onClick = { () => this.handReset() }>reset</button>
+          {/* <div>{this.state.count}</div> */}
         </header>
       </div>
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    counter: state.counter
-  }
-}
-const mapDispatchToProps = dispatch => {
-  return {
-    increment: () => {
-      dispatch(increment())
-    },
-    decrement: () => {
-      dispatch(decrement())
-    },
-    reset: () => {
-      dispatch(reset())
-    }
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+
