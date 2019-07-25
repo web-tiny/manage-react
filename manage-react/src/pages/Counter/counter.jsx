@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { increment, decrement } from '../../redux/actions/index';
 import store from '../../redux/store';
 import '../../styles/counter.scss';
+import { connect } from 'react-redux';
 
+connect(state => ({
+  count: state.count
+}))
 
 export default class Counter extends Component {
   constructor (props) {
@@ -12,9 +16,6 @@ export default class Counter extends Component {
     this.state = {
       count: 0
     };
-  }
-  componentDidMount () {
-    this.setState({ count: store.getState().default.count });
   }
 
   handleIncrement () {
@@ -33,11 +34,18 @@ export default class Counter extends Component {
       <div className="counter">
         <header className="counter-header">
           <button onClick = { ()=> this.handleIncrement() }>+</button>
+          <span>{ store.getState().default.count }</span>
           <button onClick = { ()=> this.handleDecrement() }>-</button>
-          <div>{ store.getState().default.count }</div>
         </header>
       </div>
     );
   }
 }
+// const mapStateToProps = (state) => {
+//   return {
+//     count: state.count
+//   }
+// };
+// const mapDispatchToProps = { increment, decrement };
 
+// connect(mapStateToProps, mapDispatchToProps)(Counter);
