@@ -45,5 +45,31 @@
 4:转发Refs
   eg:
   const FancyButton = React.forwardRef((props, ref) => (<button ref={ref} className="FancyButton">{props.children}</button>))
-  
+5:Fragments:React中的一个组件返回多个元素，用Fragments将子列表分组，不用向DOM添加额外的节点
+  eg:
+  class Columns extends React.Component {
+    render() {
+      return (
+        <React.Fragment> // <>
+          <td>Hello</td>
+          <td>world</td>
+        </React.Fragment> // <>
+      )
+    }
+  }
+  function Glossary (props) {
+    return (
+      <dl>
+        {
+          props.items.map(item =>(
+            <React.Fragment key={item.id}>
+              <td>{item.title}</td>
+              <td>{item.description}</td>
+            </React.Fragment>
+          ))
+        }
+      </dl>
+    )
+  }
+6:高阶组件
 ```
