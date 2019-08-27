@@ -1,10 +1,11 @@
+```javascript
 /*
  * @Author: Tiny
  * @Date: 2019-08-19 14:57:42
  * @Last Modified by: tiny.jiao@aliyun.com
  * @Last Modified time: 2019-08-20 18:24:43
 */
-
+```
 ###一：react 核心概念
 ```jsx
 1:JSX
@@ -72,4 +73,41 @@
     )
   }
 6:高阶组件
+7:深入JSX(语法糖/点语法/自定义组件必须以大写字母开头/选择类型/Props/熟悉展开/子元素)
+8:性能优化(使用Create React App)
+  1):terser-brunch插件,实现高效Brunch生产构建，build时：brunch build -p；
+  2):Browserify: envify -g->uglifyify -g (顺序)
+  3):Rollup: npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser (顺序)
+9:Portals:
+  Portal 提供了一种将子节点渲染到存在于父组件以外的 DOM 节点的优秀的方案;
+  ReactDOM.createPortal(child, container)
+10:不适用SE6:
+  const createReactClass = require('create-react-class');
+  // 创建组件
+  const Greeting = createReactClass({
+    // 声明默认属性
+    getDefaultProps: function () {
+      return {
+        name: 'mary'
+      }
+    }
+
+    // 初始化State
+    getInitialState: function () {
+      return {count: this.props.initialCount};
+    }
+
+    // 自动绑定this
+    handleClick: function () {
+      alert(this.state.count);
+    }
+
+    render: function() {
+      return (
+        <button onClick={this.handleClick}>
+          Say hello
+        </button>
+      )
+    }
+  });
 ```
