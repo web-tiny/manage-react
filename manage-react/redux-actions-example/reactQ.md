@@ -3,11 +3,11 @@
  * @Author: Tiny
  * @Date: 2019-08-19 14:57:42
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-08-20 18:24:43
+ * @Last Modified time: 2019-08-27 22:35:14
 */
 ```
 ###一：react 核心概念
-```jsx
+```javascript
 1:JSX
 2:元素渲染
 3:组件和Props
@@ -35,7 +35,7 @@
   2):将设计好的ui划分为组件层级 -> 用react创建要给静态版本 -> 确定ui state的最小表示 -> 确定state放置的位置 -> 添加反向数据流
 ```
 ###二：React高级指引
-```jsx
+```javascript
 1:代码分割：
   1): import
   2): React.lazy()(一般通过基于路由来做代码分割). eg: const OtherComponent = React.lazy(()=> import('./OtherComponent'))
