@@ -6,7 +6,8 @@
  * @Last Modified time: 2019-08-27 22:35:14
 */
 ```
-###一：react 核心概念
+
+##一：react 核心概念
 ```javascript
 1:JSX
 2:元素渲染
@@ -34,7 +35,9 @@
   1):一个组件一个功能，如果需要负责更多功能，因该考虑拆分为更小的组件
   2):将设计好的ui划分为组件层级 -> 用react创建要给静态版本 -> 确定ui state的最小表示 -> 确定state放置的位置 -> 添加反向数据流
 ```
-###二：React高级指引
+
+##二：React高级指引
+
 ```javascript
 1:代码分割：
   1): import
@@ -81,7 +84,7 @@
 9:Portals:
   Portal 提供了一种将子节点渲染到存在于父组件以外的 DOM 节点的优秀的方案;
   ReactDOM.createPortal(child, container)
-10:不适用SE6:
+10:不使用SE6:
   const createReactClass = require('create-react-class');
   // 创建组件
   const Greeting = createReactClass({
@@ -110,4 +113,101 @@
       )
     }
   });
+11:不使用JSX
+  JSX语法只是调用 React.createElement(component, props, ...children)的语法糖
+12:Refs & DOM(Refs的方式允许我们访问dom节点或在render方法中创建react元素)
+  1):Refs的使用场景：管理焦点，文本选择或媒体播放/触发强制动画/集成第三方dom库
+  2):创建refs的方式：
+    class MyComponent extends React.Component {
+      constructor (props) {
+        super(props);
+        // 1：通过React.createRef()创建refs
+        this.textInput = React.createRef();
+
+        // 2：通过回调refs的方式创建refs
+        this.textInput2 = null;
+        this.setTextInputRef = e => { this.textInput2 = e };
+        this.focusTextInput = () => {
+          // 使用原生 DOM API 使 text 输入框获得焦点
+          this.textInput2 && this.textInput2.focus();
+        }
+      }
+      doFocusTextInput = () => {
+        // 通过current访问dom节点，这特么是为啥？
+        this.textInput.current.focus();
+      }
+      componentDidMount () {
+        // 组件挂载后，让文本框自动获得焦点
+        this.focusTextInput()
+      }
+      render () {
+        return (
+          <div>
+            <input type='text' ref={this.textInput}/>
+            <input type='button' value='focus the text input' onClick={this.doFocusTextInput}/>
+            <input type='text' ref={this.setTextInputRef}/>
+            <button onClick={this.focusTextInput}>focusInput</button>
+          </div>
+        )
+      }
+    }
+  3):注意：
+    (1):避免使用refs来做任何可以通过声明式实现来完成的事情;
+    (2):react官方表示string类型的api存在一些问题，不建议使用，未来的版本可能被移除；
+    (3):不能在函数组件上使用ref属性，因为它们没有实例，但是可以在函数组件内部使用ref属性，只要它指向一个dom或class组件，eg：
+    function CustomInput (props) {
+      // 这里必须声明 textInput，这样 ref 才可以引用它
+      let textInput = React.createRef();
+
+      const handleClick = () => {
+        textInput.current.focus();
+      }
+
+      return (
+        <div>
+          <input type='text' ref={textInput}/>
+          <button onClick={handleClick}>focusInput</button>
+        </div>
+      )
+    }
+13:Render Props(一个类型为函数的 prop，它让组件知道该渲染什么)
+  1):render prop有什么用？
+    代码复用的一个手段，解决了HOC和mixin存在的一些问题，如：
+    不够直接: mixin中不知道state从哪来，HOC中props从何而来
+    名字冲突: HOC中同名prop冲突且彼此覆盖
+  2):如何写一个render prop？
+  class Mouse extends React.Component {
+    constructor (props) {
+      super(props);
+      this.state = {
+        x: 0,
+        y: 0
+      }
+    }
+    handleMouseMove = (event) => {
+      this.setState({
+        x: event.clientX,
+        y: event.clientY
+      })
+    }
+    render() {
+      return (
+        <div style={{ height: '100%' }} ouMouseMove={this.handleMouseMove}>
+          { this.props.render(this.state) }
+        </div>
+      )
+    }
+  }
+  class MouseTracker extends React.Component {
+    render() {
+      <div style={{ height: '100%' }}>
+        <Mouse render={({x, y}) => {
+          // render prop 给了我们所需要的 state 来渲染我们想要的
+          <h1>The mouse position is ({x}, {x})</h1>
+        }}
+      </div>
+    }
+  }
+14:静态类型检查：(facebook的flow/Typescript/prop-types库)
 ```
+##三：HOOK
