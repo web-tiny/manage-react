@@ -2,30 +2,33 @@
  * @Author: Tiny 
  * @Date: 2019-07-23 14:45:43 
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-08-20 17:02:36
+ * @Last Modified time: 2019-08-29 15:22:48
  */
 
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense } from 'react';
 /**
  * 1：web时应该用react-router-dom，而不是react-router
  * 2：react-router-dom没有Router，应该：BrowserRouter as Router
 */
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import loadable from '@loadable/component';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import loadable from '@loadable/component';
 
-const Home = lazy(() => import('../pages/Home/home'));
-const Login = lazy(() => import('../pages/Login/login'));
-const Counter = lazy(() => import('../pages/Counter/counter'));
+const Home = loadable(() => import('../pages/Home/home'));
+const Login = loadable(() => import('../pages/Login/login'));
+const Counter = loadable(() => import('../pages/Counter/counter'));
+// const NoMatch = loadable(() => import('../components/ErrorBoundary'));
 
 export default () => (
   <Router>
     <Suspense fallback={<div>Loading...</div>}>
-      <Route>
-        <Route path='/home' component={Home}></Route>
-        <Route path='/login' component={Login}></Route>
-        <Route path='/counter' component={Counter}></Route>
-      </Route>
-      <Route exact path='/' component={Login}></Route>
+      <Switch>
+        <Route path='/home' component={Home}/>
+        <Route path='/login' component={Login}/>
+        <Route path='/counter' component={Counter}/>
+        {/* when none of the above match, <NoMatch> will be rendered */}
+        {/* <Route component={NoMatch}>404</Route>*/}
+      </Switch>
+      <Route exact path='/' component={Login}/>
     </Suspense>
   </Router>
 )

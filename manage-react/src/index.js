@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/reset.css';
-import Route from './router/router';
 import { Provider } from 'react-redux';
-import store from './redux/store';
-import * as serviceWorker from './serviceWorker';
+import ReactDOM from 'react-dom';
 import zhCN from 'antd/es/locale-provider/zh_CN';
+import './assets/styles/reset.css';
+import Route from './router/router';
+import store from './store/store';
+import * as serviceWorker from './serviceWorker';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import 'antd/dist/antd.css';

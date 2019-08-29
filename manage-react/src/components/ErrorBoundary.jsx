@@ -2,7 +2,7 @@
  * @Author: Tiny
  * @Date: 2019-08-20 17:57:01
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-08-20 18:05:58
+ * @Last Modified time: 2019-08-29 14:21:48
  */
 import React from "react";
 
@@ -15,6 +15,7 @@ export default class ErrorBoundary extends React.Component {
     }
   }
   componentDidCatch (error, errorInfo) {
+    console.log(error, errorInfo)
     this.setState({
       error: error,
       errorInfo: errorInfo
@@ -25,9 +26,10 @@ export default class ErrorBoundary extends React.Component {
       // error
       return (
         <div>
-          <h2>Something went wrong.</h2>
+          <h2>Oh-No! Something went wrong</h2>
           <details style={{ whiteSpace: 'pre-wrap' }}>
-            { this.state.error && this.state.error.toString() } <br/>
+            <p>{ this.state.error && this.state.error.toString() }</p>
+            <p>{"Component Stack Error Details: "}</p>
             { this.state.errorInfo.componentStack }
           </details>
         </div>

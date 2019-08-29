@@ -1,51 +1,45 @@
 import React, { Component } from 'react';
-import { increment, decrement } from '../../redux/actions/index';
-import store from '../../redux/store';
-import '../../styles/counter.scss';
+import { increment, decrement } from '../../store/login/action';
+import '../../assets/styles/counter.scss';
 import { connect } from 'react-redux';
 
 connect(state => ({
   count: state.count
 }))
 
-export default class Counter extends Component {
+class Counter extends Component {
   constructor (props) {
     super(props);
-    this.handleIncrement = this.handleIncrement.bind(this);
-    this.handleDecrement = this.handleDecrement.bind(this);
     this.state = {
       count: 0
     };
   }
 
-  handleIncrement () {
-    console.log(store.getState().default.count);
-    store.dispatch(increment());
+  handleIncrement= () => {
+    this.props.increment();
   }
 
-  handleDecrement () {
-    console.log(store.getState().default.count);
-    store.dispatch(decrement());
+  handleDecrement= () => {
+    this.props.decrement();
   }
 
   render() {
-    // let counter = store.getState().default.count;
+    let counter = this.props.result.count
     return (
       <div className="counter">
         <header className="counter-header">
-          <button onClick = { ()=> this.handleIncrement() }>+</button>
-          <span>{ store.getState().default.count }</span>
-          <button onClick = { ()=> this.handleDecrement() }>-</button>
+          <button onClick = { this.handleIncrement }>+</button>
+          <span>{ counter }</span>
+          <button onClick = { this.handleDecrement }>-</button>
         </header>
       </div>
     );
   }
 }
-// const mapStateToProps = (state) => {
-//   return {
-//     count: state.count
-//   }
-// };
-// const mapDispatchToProps = { increment, decrement };
 
-// connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(state => ({
+  result: state.result
+}),{
+  increment,
+  decrement
+})(Counter);
