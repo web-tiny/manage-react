@@ -2,57 +2,74 @@
  * @Author: Tiny 
  * @Date: 2019-07-23 17:30:20 
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-07-23 17:30:40
+ * @Last Modified time: 2019-08-29 23:40:58
  */
 body {
-  height: 100vh;
   width: 100vw;
-  position: fixed;
+  height: 100vh;
   top: 0;
   left: 0;
-  bottom: 0;
   right: 0;
-  display: flex;
+  bottom: 0;
+  position: fixed;
+  font-family: "Helvetica Neue",Helvetica,STHeiTi,sans-serif;
 }
 /* 格式化样式 */
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,spantd,span {
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,th,span,td,button,img,i,table,tr,th,header,main,footer,section,option,details,address,small,fieldset {
   margin: 0;
   padding: 0;
+  font-weight: normal;
+  box-sizing: border-box;
+  /*防止点击闪烁*/
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  /*缩放网页，文字大小不变*/
+  -webkit-tap-highlight-color: transparent;
 }
 table {
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
 }
 fieldset,img {
   border: 0
 }
-address,caption,cite,code,dfn,em,strong,th,var {
+address,caption,cite,code,em,strong,th {
   font-style: normal;
-  font-weight: normal
+  font-weight: normal;
 }
 ol,ul {
-  list-style: none
-}
-caption,th {
-  text-align: left
+  list-style: none;
 }
 h1,h2,h3,h4,h5,h6 {
   font-size: 100%;
-  font-weight: normal
-}
-q:before,q:after {
-  content: ''
-}
-abbr,acronym {
-  border: 0
+  font-weight: normal;
 }
 input,button {
   border: none;
 }
-span,i {
+span,i,em {
+  font-style: normal;
   vertical-align: middle;
 }
-/* a标签 */
-body a {
-  color: inherit
+a {
+  text-decoration: none;
+  /*ios禁止页面在新窗口打开*/
+  -webkit-touch-callout:none;
+}
+/*去除虚线*/
+input:focus,select:focus,textarea:focus,button:focus{
+  outline: none;
+}
+/*重置部分表单圆角和内阴影*/
+input[type="text"],input[type="file"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],input[type="email"],input[type="url"],textarea{
+  -webkit-appearance:none;
+}
+/*去除文本框上下箭头*/
+input[type="number"]::-webkit-inner-spin-button{
+-webkit-appearance:none;
+}
+.ellipsis{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }

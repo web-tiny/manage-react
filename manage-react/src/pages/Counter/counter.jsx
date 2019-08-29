@@ -11,11 +11,11 @@ class Counter extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      count: 0
+      // count: 0
     };
   }
 
-  handleIncrement= () => {
+  handleIncrement=() => {
     this.props.increment();
   }
 
@@ -26,13 +26,11 @@ class Counter extends Component {
   render() {
     let counter = this.props.result.count
     return (
-      <div className="counter">
-        <header className="counter-header">
-          <button onClick = { this.handleIncrement }>+</button>
-          <span>{ counter }</span>
-          <button onClick = { this.handleDecrement }>-</button>
-        </header>
-      </div>
+      <header className="counter">
+        <button onClick = { this.handleIncrement }> + </button>
+        <span>{ counter }</span>
+        <button onClick = { this.handleDecrement }> - </button>
+      </header>
     );
   }
 }
