@@ -2,7 +2,7 @@
  * @Author: Tiny 
  * @Date: 2019-07-23 15:18:18 
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-08-29 18:10:33
+ * @Last Modified time: 2019-08-30 10:17:31
  */
 /** 
  * store的作用：
@@ -14,11 +14,11 @@
 */
 
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import * as login from './login/reducer';
+import * as result from './counter/reducer';
 import thunk from 'redux-thunk';
 
 let store = createStore(
-  combineReducers({ ...login }),
+  combineReducers({ ...result }),
   applyMiddleware(thunk)
 );
 

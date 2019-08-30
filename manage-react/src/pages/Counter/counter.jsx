@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { increment, decrement } from '../../store/login/action';
+import { increment, decrement } from '../../store/counter/action';
 import '../../assets/styles/counter.scss';
 import { connect } from 'react-redux';
 
