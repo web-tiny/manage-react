@@ -2,10 +2,12 @@
  * @Author: Tiny 
  * @Date: 2019-07-23 14:42:36 
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-08-29 13:47:56
+ * @Last Modified time: 2019-09-02 13:19:12
  */
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button } from 'antd';
+import { connect } from 'react-redux';
+import { setUserInfo } from '../../store/login/action';
 import '../../assets/styles/login/index.scss';
 
 class LoginForm extends Component {
@@ -18,6 +20,8 @@ class LoginForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.setUserInfo(values);
+        this.props.history.push('./home')
       }
     });
   };
@@ -58,5 +62,11 @@ class LoginForm extends Component {
     );
   }
 }
+
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(LoginForm);
-export default WrappedNormalLoginForm;
+
+export default connect((state) =>({
+  userInfo: state.userInfo
+}), {
+  setUserInfo
+})(WrappedNormalLoginForm) 
