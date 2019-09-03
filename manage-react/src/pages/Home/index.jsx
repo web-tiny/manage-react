@@ -2,7 +2,7 @@
  * @Author: Tiny 
  * @Date: 2019-07-23 14:42:41 
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-09-02 17:19:49
+ * @Last Modified time: 2019-09-03 11:04:22
  */
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../assets/styles/home/index.scss';
+import logo from '../../assets/images/logo.svg'
 
 const { Header, Sider, Content } = Layout;
 class Home extends Component {
@@ -23,11 +24,11 @@ class Home extends Component {
     path: ''
   };
 
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
+  // toggle = () => {
+  //   this.setState({
+  //     collapsed: !this.state.collapsed,
+  //   });
+  // };
 
   doRouter = (path) => {
     console.log(this.props.params);
@@ -47,19 +48,19 @@ class Home extends Component {
 
     return (
       <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
+        <Sider>
+          <div className="logo"><img src={logo} alt="公司logo"/>React中后台应用</div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             { sideBar }
           </Menu>
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
-            <Icon
+            {/* <Icon
               className="trigger"
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
-            />
+            /> */}
             <i className="userInfo">你好{ name }</i>
           </Header>
           <Content className="contentStyle">

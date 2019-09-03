@@ -10,11 +10,11 @@
   color: #1890ff;
 }
 
-#components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-}
+// #components-layout-demo-custom-trigger .logo {
+//   height: 32px;
+//   background: rgba(255, 255, 255, 0.2);
+//   margin: 16px;
+// }
 .ant-layout-sider-children {
   height: 100vh;
 }
@@ -30,4 +30,14 @@
   padding: 24px;
   background: #fff;
   minHeight: 280px;
+}
+.logo {
+  color: #fff;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    height: 48px;
+  }
 }
