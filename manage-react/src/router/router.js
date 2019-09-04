@@ -2,7 +2,7 @@
  * @Author: Tiny 
  * @Date: 2019-07-23 14:45:43 
  * @Last Modified by: tiny.jiao@aliyun.com
- * @Last Modified time: 2019-09-03 17:42:29
+ * @Last Modified time: 2019-09-04 14:08:28
  */
 
 import React, { Suspense } from 'react';
@@ -19,7 +19,7 @@ export default (authed, authPath = '/login', extraProps = {}, switchProps = {}) 
       <Switch {...switchProps}>
         {routerConfig.map((route, i) => (
           <Route
-            key={route.component}
+            key={route.id}
             path={route.path}
             exact={route.exact}
             render={(props) => {
